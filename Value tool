@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang="title">LINDOFLAMM beräkningsverktyg  - Linde Gas AB</title>
+    <link rel="shortcut icon" type="image/x-icon"
+        href="http://img03.en25.com/EloquaImages/clients/OYAGAAb/%7Bc27993b9-03a4-40a7-840f-b5364be4db83%7D_favicon.png">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        @font-face {
+            font-family: 'Linde Dax';
+            font-weight: 300;
+            src: url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/EOT/Fonts/LindeDaxLigWeb.eot');
+            src: url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/EOT/Fonts/LindeDaxLigWeb.eot?#iefix') format('embedded-opentype'),
+                url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/WOFF/Fonts/LindeDaxLigWeb.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Linde Dax';
+            font-weight: 400;
+            src: url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/EOT/Fonts/LindeDaxSemiLigWeb.eot');
+            src: url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/EOT/Fonts/LindeDaxSemiLigWeb.eot?#iefix') format('embedded-opentype'),
+                url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/WOFF/Fonts/LindeDaxSemiLigWeb.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Linde Dax';
+            font-weight: 500;
+            src: url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/EOT/Fonts/LindeDaxRegWeb.eot');
+            src: url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/EOT/Fonts/LindeDaxRegWeb.eot?#iefix') format('embedded-opentype'),
+                url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/WOFF/Fonts/LindeDaxRegWeb.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Linde Dax';
+            font-weight: 600;
+            src: url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/EOT/Fonts/LindeDaxMedWeb.eot');
+            src: url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/EOT/Fonts/LindeDaxMedWeb.eot?#iefix') format('embedded-opentype'),
+                url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/WOFF/Fonts/LindeDaxMedWeb.woff') format('woff');
+        }
+
+        html * {
+            font-family: 'Linde Dax', Arial, sans-serif;
+            font-size: 18px;
+            color: rgb(0, 85, 145);
+        }
+
+        .header {
+            border-bottom: 8px solid #00305c;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background-color: rgb(241, 245, 247);
+        }
+
+        h3 {
+            margin-bottom: 20px;
+        }
+
+        .elq-content-image {
+            max-width: 420px;
+        }
+
+        #firstBanner {
+            display: block;
+            margin: 0 auto;
+            background-repeat: no-repeat;
+            width: 100%;
+        }
+
+        .backgroundForGenieText {
+            display: inline-block;
+            margin: 0 auto;
+            background-color: #f1f5f7;
+            background-repeat: no-repeat;
+            padding-bottom: 3%;
+            border-bottom: 1px solid;
+        }
+
+        .userInputForm {
+            display: block;
+            margin: 0 auto;
+            background-repeat: no-repeat;
+
+            font-family: 'Linde Dax', Arial, sans-serif;
+            float: left;
+        }
+
+        #dimentionsPic {
+            max-width: 100%;
+        }
+
+        #width,
+        #length,
+        #thickness,
+        #startingTemp,
+        #targetTemp {
+            border-radius: 10px;
+            padding: 6px;
+            background-color: #f1f5f7;
+            border: 1px solid;
+        }
+
+        #submitButton {
+            border: 1px solid;
+            padding: 12px 10px 10px 10px;
+            background-color: #00a0e1;
+            color: white;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        #submitButton:hover {
+            background-color: #0A86B8;
+            cursor: pointer;
+        }
+
+        #calculation {
+            display: none;
+            float: left;
+            width: 70%;
+            padding-left: 20%;
+        }
+
+        #generalText {
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .temperatureBox,
+        .heatingTimeBox,
+        .weightBox {
+            border: 1px solid #00305c;
+            background-color: #F1F5F7;
+            border-radius: 10px;
+            padding-left: 20%;
+            padding: 10px;
+
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .heatingTimePropaneBox {
+            border: 1px solid #00305c;
+            background-color: #F1F5F7;
+            border-radius: 10px;
+            padding-left: 20%;
+            padding: 10px;
+
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        #workpieceResult {
+            padding-top: 30px;
+            position: relative;
+        }
+
+        #weightResult {
+            display: inline-block;
+            padding-left: 10px;
+            font-family: 'Linde Dax', Arial, sans-serif;
+            font: bold;
+            color: #00a0e1;
+            margin-bottom: 40px;
+        }
+
+        button {
+            outline: none;
+        }
+
+        #workpieceResult img {
+            display: inline-block;
+        }
+
+        #deltaTemp {
+            position: relative;
+            background-repeat: no-repeat;
+        }
+
+        .resultsBoxPagetwo {
+            border: 1ps solid #f1f5f7;
+            background-color: #f1f5f7;
+            background-repeat: no-repeat;
+            margin: 0 auto;
+            display: block;
+            height: 270px;
+            margin-bottom: 5%;
+            padding-bottom: 3%;
+            margin-bottom: 0;
+        }
+
+        #acetyleneBox {
+            width: 250px;
+            height: 190px;
+            left: 132px;
+            top: 473px;
+            background: #F1F5F7;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            margin-left: 2%;
+            display: inline-block;
+            float: left;
+        }
+
+        #propaneBox {
+            width: 250px;
+            height: 190px;
+            left: 132px;
+            top: 473px;
+            background: #F1F5F7;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            display: inline-block;
+            margin-left: 5%;
+            float: left;
+        }
+
+
+        #newCalculation {
+            background-color: #00A0E1;
+            color: white;
+            font-family: 'Linde Dax', Arial, sans-serif;
+            margin-left: 2%;
+            padding: 10px;
+            cursor: pointer;
+            border: 1px solid #00A0E1;
+            display: block;
+        }
+
+        #newCalculation:hover {
+            background-color: #0A86B8;
+        }
+
+        .InfoBenefits {
+            border: 1px solid #00305c;
+            margin: 0 auto;
+            background: #00305c;
+            background-repeat: no-repeat;
+            height: auto;
+            font-family: 'Linde Dax', Arial, sans-serif;
+            color: white;
+            margin-top: 0px;
+        }
+
+        #dropdownInfo {
+            margin: 0 auto;
+            width: 60%;
+            background-repeat: no-repeat;
+        }
+
+        @media only screen and (max-width: 1000px) {
+            #dimentionsPic {
+                width: 80%;
+            }
+
+            .elq-content-image {
+                max-width: 300px;
+            }
+        }
+
+        @media only screen and (max-width: 767px) {
+
+            #timeSavedBox,
+            #propaneBox {
+                margin-top: 5%;
+            }
+
+            .elq-content-image {
+                max-width: 80%;
+            }
+
+            #propaneBox,
+            #timeSavedBox,
+            #acetyleneBox {
+                margin-left: 5%;
+                float: none;
+            }
+
+            .hidemobile {
+                display: none;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .header {
+                padding-left: 40px;
+                padding-right: 45px;
+            }
+        }
+
+        @media (min-width: 1380px) {
+            .container {
+                width: 1350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-6 genie-logo-wrapper hidemobile" style="padding-top: 15px; padding-bottom:15px;">
+                        <span style="font-size: 26px; color: rgb(0, 176, 240); font-weight: 500;">LINDOFLAMM<sup
+                                style="font-size: 18px; color: rgb(0, 176, 240);">®</sup></span><br>
+                        <span style="font-size: 20px; line-height: 26px; font-weight: 500; color: #005591;">Vorteilskalkulation: Acetylen vs. Propan</span>
+                    </div>
+                    <div class="col-sm-6 text-right header__right">
+                        <a href="http://www.linde-gas.se/sv/?elqTrackId=11e66e15829f411dbb3d5870af829660"><img
+                                class="elq-content-image"
+                                src="https://img03.en25.com//EloquaImages/clients/OYAGAAb/%7Bbdc1956b-4495-4f66-9fdb-bd978a906fab%7D_Linde_plc_logo_combi_cyan_1_4_sRGB.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="banner">
+                    <img id="firstBanner"
+                        src="http://img03.en25.com/EloquaImages/clients/OYAGAAb/%7Bbeaa8a4c-ca8b-419a-b0d0-d51aec9ce93f%7D_Group_6_%281%29.png">
+                </div>
+
+                <div id="firstPageBlock" style="display: block">
+                    <div class="backgroundForGenieText">
+                        <div class="col-md-10 col-md-offset-1" style="padding-top: 15px;">
+                            <h3
+                                style="font-family: 'Linde Dax', Arial, sans-serif; font-size: 36px; color: rgb(0, 85, 145); font-weight: 700;">
+                                Verwenden Sie zum Vorwärmen Propan?
+                                Lassen Sie uns die Vorteile der LINDOFLAMM Wärmtechnik kurz erläutern.
+                                </h3>
+
+                            <p style="font-family: 'Linde Dax', Arial, sans-serif; line-height: 1.39;">
+                                Die Verwendung von hochfesten Stählen wird immer wichtiger, da sie eine verbesserte Bauteilleistung bei 
+                                reduziertem Gewicht und geringeren Kosten bieten.Egal, ob Sie im Stahlbau, im Hochbau, in der 
+                                verarbeitenden Industrie, in der Baumaschinenindustrie, im Pipelinebau, 
+                              <br>
+                                im Schiffbau oder in einer anderen Branche arbeiten, in der Vor- und Nachwärmprozesse erforderlich sind - 
+                                die Verwendung von Acetylen bietet klare Vorteile im Vergleich zu anderen Gasen, wie Propan.
+                                LINDOLFLAMM® Wärmtechnik bietet verschiedene Lösungen, die auf Ihre spezifische Arbeitsumgebung angepasst werden können.
+                               <br>
+                               
+                            </p>
+                            <h3 style="font-family: 'Linde Dax', Arial, sans-serif; font-weight: 700">Probieren Sie es aus und berechnen Sie Ihre Vorteile bei der 
+                                Nutzung von Acetlyen anhand der genauen Abmessungen Ihres Werkstücks !</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-10 col-md-offset-1">
+                        <h3 style="font-weight: 700;font-family: 'Linde Dax', Arial, sans-serif;">Bitte geben Sie die Maße Ihres Werkstückes an:</h3>
+                    </div>
+
+                    <div class="col-md-4 col-md-offset-1">
+                        <form class="userInputForm" onsubmit="return false" id="valueTool">
+                            <input type="hidden" name="emailAddress" id="fe2660"
+                                value="~~eloqua..type--emailfield..syntax--EmailAddress~~" style="width:100%;">
+                            <input type="hidden" id="weight" name="weight" value="">
+                            <input type="hidden" id="startingTemphidden" name="startingTemphidden" value="">
+                            <input type="hidden" id="targetTemphidden" name="targetTemphidden" value="">
+                            <input type="hidden" id="deltaThidden" name="deltaT" value="">
+                            <input type="hidden" id="numberOfNozzles" name="numberOfNozzles" value="">
+                            <input type="hidden" id="heatingTime" name="heatingTime" value="">
+                            <input type="hidden" id="roundedHeatTime" name="roundedHeatTime" value="">
+                            <label for="width">Breite in mm  [Vorwärmzone] (*L1)</label><br>
+                            <input type="number" id="width" name="width" minlength="2" placeholder="Mindestbreite 75mm"
+                                required=""><span> mm</span>
+                            </span><br><br>
+                            <p id="wrongInput" style="color: red; font-size: 10px;" hidden="">Bitte geben Sie einen Wert von mindestens 75mm ein.</p>
+
+                            <label for="thickness">Materialstärke in mm (*L2)</label><br>
+                            <input type="number" id="thickness" name="thickness" placeholder="Z.B. 200mm" required><span>
+                                mm</span>
+                            <span id="errorForThickness"
+                                style="color: red; font-family: LindeDaxOffice; margin-left: 5px; font-weight: 700;"
+                                hidden>
+                                Pflichtfeld</span><br><br>
+                            <label for="Length">Länge in mm  [Vorwärmzone] (*L3)</label><br>
+                            <input type="number" id="length" name="length" placeholder="Z.B. 4000mm" required=""><span>
+                                mm</span>
+                            <span id="errorForLength"
+                                style="color: red; font-family: LindeDaxOffice; margin-left: 5px; font-weight: 700;"
+                                hidden>
+                                Pflichtfeld</span>
+                            <br><br>
+
+                            <div id="workpieceResult" hidden="true">
+                                <img
+                                    src="http://img03.en25.com/EloquaImages/clients/OYAGAAb/%7Be9cb376b-72ee-499c-b44e-3482c1520f48%7D_shipping-and-delivery_1.png">
+                                <p id="weightResult"><br> </p>
+                                <hr
+                                    style="margin-block-start: -2em; margin-inline-start: 3em; height: 1.3px; background-">
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="col-md-6" style="display: inline-block;">
+                        <img id="dimentionsPic"
+                            src='http://img03.en25.com/EloquaImages/clients/OYAGAAb/%7B2616abe9-b46b-4992-b5bf-74a4aacaf1d1%7D_Drawing_Value_Tool_Text_SWE_with_frame.jpg' />
+                    </div>
+                    <div class="col-md-10 col-md-offset-1">
+                        <p
+                            style="color: red; font-family: 'Linde Dax', Arial, sans-serif; text-align: center; display: inline-block; margin-block-start: 1em; margin-block-end: 1em;">
+                            Berechnung bis 10.000kg -<a href="https://ig.linde-gas.com/kontakta-oss?elqTrackId=18d478a4a165406798eeb011a4149259" style="font-weight: 600; color: red;">bitte kontaktieren
+                                Sie uns</a> für größere Werkstücke. 
+
+                            </p>
+                    </div>
+
+                    <hr style="width: 100%; background-height: 1px; margin-top: 20px;">
+
+                    <div class="col-md-10 col-md-offset-1">
+                        <h3 style="font-family: 'Linde Dax', Arial, sans-serif;">Bitte geben Sie Ihre Temperaturanforderungen an: </h3>
+                        <div style="background-repeat: no-repeat;">
+
+                            <div style="display: block; margin-right: 2%;">
+                                <label for="startingTemp" style="font-family: 'Linde Dax', Arial, sans-serif;">Anfangstemperatur (°C)</label><br>
+                                <input type="number" id="startingTemp" name="startingTemp" placeholder="°C"><br><br>
+                            </div>
+                            <div style="display: inline-block; font-family: 'Linde Dax', Arial, sans-serif;">
+                                <label for="targetTemp" style="">
+                                    Vorwärmtemperatur (C°)</label><br>
+                                <input type="number" id="targetTemp" name="targetTemp" placeholder="°C"><br><br></div>
+                        </div>
+
+                        <div id="deltaTemp" hidden="true">
+                            <img style="display: inline-block;"
+                                src="http://img03.en25.com/EloquaImages/clients/OYAGAAb/%7Be341b821-aa2c-4393-a790-80f30414dfa2%7D_tools-and-utensils_1.png">
+                            <p style="color: #00A0E1;; display: inline-block;" id="deltaT"><br>
+                            </p>
+                            <hr
+                                style="margin-block-start: 0em; margin-inline-start: 3em; color:#00305c; background-height: 1.5px; max-width: 115px;">
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <hr style="width: 100%; background-height: 1px;">
+                    <div class="col-md-10 col-md-offset-1">
+                        <input id="submitButton" type="submit" value="Berechnen Sie die Vorheizzeit"
+                            onclick="makeSecondPageVisible()">
+                        <span id="fieldsComplete" style="color: red; font-family: 'Linde Dax', Arial, sans-serif;"
+                            hidden="">Bitte füllen Sie alle Felder aus!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="second-page-container container" id="secondPageDiv" hidden="">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="resultsBoxPagetwo" style="margin-top: 0; height: 100%;">
+                    <h2
+                        style="padding-top: 3%; padding-left: 2%; padding-right: 2%; font-family: 'Linde Dax', Arial, sans-serif; font-size: 36px; color: rgb(0, 85, 145); font-weight: 700; margin: 0 0 20px;">
+                        Vorwärmzeit für Ihr Werkstück*
+                    </h2>
+                    <div id="acetyleneBox">
+
+                        <h2 style="font-family: 'Linde Dax', Arial, sans-serif; padding-left: 10%; font-size: 25px;">Acetylen</h2>
+                        <img style="padding-left: 10%; display: inline-block;" src="symbol 1.png">
+                        <p id="acetyleneMinutes"
+                            style="color: #00a0E1; display: inline-block; font-weight: 700; font-size:25px; margin-top:10%;"> </p>
+
+                    </div>
+                    <div id="propaneBox">
+                        <h2 style="font-family: 'Linde Dax', Arial, sans-serif; padding-left: 10%; font-size: 25px;">Propan</h2>
+                        <img style="padding-left: 10%; display: inline-block;" src="symbol 1.png">
+                        <p id="propaneMinutes"
+                            style="color: #00a0E1; display: inline-block; font-weight: 700; font-size:25px; margin-top:10%;"></p>
+
+                    </div>
+
+
+
+                    <p
+                        style="color: red; font-family: 'Linde Dax', Arial, sans-serif; padding: 2%; font-weight: 900; clear: both;">
+                        *(Theoretische Vorwärmzeit: Der Wert kann je nach Produktionsumgebung variieren, z. B. aufgrund von Temperatur, Belüftung usw.)</p>
+                    <input id="newCalculation" type="submit" value="Neue Berechnung starten"
+                        onclick="startNewCalculation()">
+
+                </div>
+
+                <div class="InfoBenefits">
+                    <h2
+                        style="color: white; font-family: 'Linde Dax', Arial, sans-serif; background-repeat: no-repeat; width: 96%; margin: 0 auto; margin-top: 25px; font-size: 24px;">
+                        Einsparungen und Vorteile mit Acetylen:
+                    </h2>
+                    <p style="padding: 2%; color: white;">Die obigen Ergebnisse basieren auf Ihrer Eingabe und geben Ihnen einen ersten Hinweis auf Ihre Vorteile bei der Nutzung von Acetlyen gegenüber Propan!
+
+                        Abhängig davon, wie häufig dieser Prozess innerhalb eines Jahres ausgeführt wird, und den damit verbundenen Arbeitskosten, kann dies in Summe zu einer erheblichen Zeit- und Kostenersparnis führen!
+                        
+                        Unsere LINDOFLAMM®-Experten verfeinern diese Berechnung gerne, indem sie Ihre individuellen Anforderungen und Prozesse betrachten und Ihnen eine realistische Einschätzung Ihres Nutzens geben.
+                        
+                        Wir zeigen Ihnen vier Schlüsselbereiche, in denen unsere Kunden von der LINDOFLAMM® Wärmtechnik profitieren.<br>
+
+
+                    </p>
+                </div>
+
+                <div class="dropdownInfo">
+                    <div class="dropDownfirstBox"
+                        style="background-color: #f1f5f7;  height: 25%; padding: 20px 2%; margin: 0 auto;">
+                        <span style="font-weight: 700; font-size: 20px;">
+                            Produktivität &amp; Effizienz
+                            <button onclick="openFirstBox()"
+                                style="height: 25px; float: right; display: inline-block; border:none; background-color: transparent; padding-right: 2%; fill:#00305c"><img
+                                    id="buttonForFirstTab"
+                                    style="height: 25px; float: right; display: inline-block; padding-right: 2%; fill:#00305c"
+                                    src="http://img03.en25.com/EloquaImages/clients/OYAGAAb/%7Bc92d11f3-7ddf-4cd0-9502-bf5442df70f3%7D_down_arrow.png"></button>
+                        </span>
+                        <hr id="lineForFirstBox" style="width: 100%; " hidden="">
+                        <p id="firstBoxInfo"
+                            style="font-family: 'Linde Dax', Arial, sans-serif; padding-left: 2%; padding-right: 2%;"
+                            hidden="">
+                            <strong>Steigerung der Produktivität durch Zeitersparnis:
+                            </strong><br>
+                            Acetylen erzeugt die höchste Flammentemperatur und ermöglicht eine schnelle und konzentrierte Erwärmung.
+                            Die Vorwärmzeiten können im Vergleich zu anderen Gasen, wie z.B. Propan, um <strong>bis zu 60% reduziert</strong> werden.
+                           <br> </br>
+                           
+                            <ul id="firstBoxList" hidden="">
+                                <strong> Das bedeutet: </strong>
+                           <li> höherer Produktionsdurchsatz bei geringerer Wartezeit zwischen den Produktionsschritten</li>
+                            <li>Senkung der Arbeitskosten durch einen insgesamt effizienteren und zuverlässigeren Prozess. </li>
+                            <strong> Übrigens</strong>
+                            Wussten Sie, dass Sie Acetylen in den meisten Fällen sogar mit Druckluft verwenden können, anstatt Propan mit Sauerstoff?
+                        </ul>
+                        </p>
+
+                    </div>
+
+                    <div class="dropDownDecondBox"
+                        style="background-color: #ffffff;  height: 25%; padding: 20px 2%; margin: 0 auto;">
+                        <span style="font-weight: 700; font-size: 20px;">
+                            Produktqualität 
+                            <button onclick="openSecondBox()"
+                                style="height: 25px; float: right; display: inline-block; border:none; background-color: transparent; padding-right: 2%; fill:#00305c"><img
+                                    id="buttonForSecondTab"
+                                    style="height: 25px; float: right; display: inline-block; padding-right: 2%; fill:#00305c"
+                                    src="http://img03.en25.com/EloquaImages/clients/OYAGAAb/%7Bc92d11f3-7ddf-4cd0-9502-bf5442df70f3%7D_down_arrow.png"></button>
+                        </span>
+
+                        <hr id="lineForSecondBox" style="width: 100%; " hidden="">
+                        <p id="secondBoxInfo"
+                            style="font-family: 'Linde Dax', Arial, sans-serif; padding-left: 2%; padding-right: 2%;"
+                            hidden>
+                            <strong>Verbesserung der Qualität in jedem Produktionsschritt: 
+                            </strong><br> </br>
+                            Das Arbeiten mit einer Acetylenflamme bedeutet, dass die Energie in der Primärflamme enthalten ist - 
+                            was eine präzise Wärmeverteilung ermöglicht - 
+                            genau bis zu dem Punkt, an dem Ihr Werkstück Wärme für die weitere Verarbeitung benötigt. 
+                            Gleichzeitig weist Acetylen die höchste Flammenausbreitungsrate auf, 
+                            erhöht den thermischen Wirkungsgrad und erzeugt sehr geringe Feuchtigkeitsniveaus.
+                            <br> </br>                            Sie werden die offensichtlichen <strong>Vorteile an Ihrem Werkstück </strong> erkennen:
+
+                            <ul id="secondBoxList" hidden=""> 
+                            <li>reduzierte <strong>Korrosion</strong> </li>
+                            <li> keine <strong>wasserstoffinduzierten Risse </strong></li>
+                            
+                        </ul>
+                        </p>
+                    </div>
+                    <div class="dropDownThirdBox"
+                        style="background-color: #f1f5f7;  height: 25%; padding: 20px 2%; margin: 0 auto;">
+                        <span style="font-weight: 700; font-size: 20px;">
+                            Erfüllung von Industriestandards 
+                                                        <button onclick="openThirdBox()"
+                                style="height: 25px; float: right; display: inline-block; border:none; background-color: transparent; padding-right: 2%; fill:#00305c"><img
+                                    id="buttonForThirdTab"
+                                    style="height: 25px; float: right; display: inline-block; padding-right: 2%; fill:#00305c"
+                                    src="http://img03.en25.com/EloquaImages/clients/OYAGAAb/%7Bc92d11f3-7ddf-4cd0-9502-bf5442df70f3%7D_down_arrow.png"></button>
+                        </span>
+
+                        <hr id="lineForThirdBox" style="width: 100%; " hidden="">
+                        <p id="ThirdBoxInfo"
+                            style="font-family: 'Linde Dax', Arial, sans-serif; padding-left: 2%; padding-right: 2%;"
+                            hidden="">
+                            <strong>Bleiben Sie auf dem neuesten Stand der 
+                                Industriestandards und demonstrieren Sie Ihre Fähigkeiten im Bereich Qualität, Sicherheit und Arbeitsumfeld:</strong><br>
+<br></br>
+                           Sind Sie bereits nach dem Qualitätsmanagementsystem EN ISO 9001, dem Umweltmanagementsystem DIN ISO 14001, dem Arbeitsschutzmanagementsystem OHSAS 18001 oder sogar nach der führenden Schweißzertifizierung ISO 3834 zertifiziert?<br>
+
+Der Einsatz von LINDOFLAMM® Wärmtechnik in Ihrer Produktion, hat einige positive Nebeneffekte:
+Einerseits können <strong>Sicherheitsaspekte klar verbessert</strong> werden, andererseits sorgt die Verwendung von LINDOFLAMM® Wärmtechnik für Optimierungen bei der <strong>Einhaltung der genannten ISO-Normen</strong>.<br>
+<br></br>
+Ein <strong>praktisches Beispiel</strong> für die Schaffung einer besseren Arbeitsumgebung durch Verwendung von Acetylen und Druckluft (im Vergleich zu Propan und Sauerstoff): Eine konzentriertere Flamme verursacht eine viel niedrigere Umgebungstemperatur in der Produktion und deutlich weniger Geräusche aufgrund eines geringeren Gesamtgasstroms durch die Düsen.
+
+<br> </br>
+Dies ist nicht nur für Sie als Unternehmen relevant, sondern <strong>demonstriert Ihre Fähigkeiten</strong> gleichezitig auch <strong>Ihren Kunden</strong>!
+                        </p>
+
+                    </div>
+
+                    <div class="dropDownFourthBox"
+                        style="background-color: #ffffff;  height: 25%; padding: 20px 2%; margin: 0 auto;">
+                        <span style="font-weight: 700; font-size: 20px;">
+                            Zugeschnitten auf Ihren Bedarf                            <button onclick="openFourthBox()"
+                                style="height: 25px; float: right; display: inline-block; border:none; background-color: transparent; padding-right: 2%; fill:#00305c"><img
+                                    id="buttonForFourthTab"
+                                    style="height: 25px; float: right; display: inline-block; padding-right: 2%; fill:#00305c"
+                                    src="http://img03.en25.com/EloquaImages/clients/OYAGAAb/%7Bc92d11f3-7ddf-4cd0-9502-bf5442df70f3%7D_down_arrow.png"></button>
+                        </span>
+                        <hr id="lineForFourthBox" style="width: 100%; " hidden="">
+                        <p id="FourthBoxInfo"
+                            style="font-family: 'Linde Dax', Arial, sans-serif; padding-left: 2%; padding-right: 2%;"
+                            hidden="">
+                            
+                            <strong>Von der Verbesserung Ihrer heutigen Prozesse bis zur Professionalisierung Ihrer Wertschöpfungskette:
+                            </strong><br> </br>
+                           <strong>Mit unserer LINDOFLAMM® Wärmtechnik bieten wir ein Paket, das vollständig 
+                               auf Ihre Bedürfnisse zugeschnitten ist!: </strong><br>
+                               
+
+                            <ul id="fourthBoxList" hidden="">
+                                Ganz gleich
+                            <li> ob Sie ein kleiner Schweißbetrieb sind, der sich hauptsächlich auf kleine Werkstücke konzentriert, oder in einer großen Produktionsstätte mit großen Teilen arbeiten
+                            </li>
+                            <li>ob Sie nur die Qualität und die Kostenvorteile von Acetylen im Vergleich zu anderen Gasen kennenlernen möchten</li>
+                            <li>  ob Sie Ihre Produktion steigern möchten und von manuellen zu automatisierten Produktionsprozessen wechseln möchten:
+                            </li>
+                      <br>
+                      Linde verfügt über ein ganzes Portfolio an Geräten und Know-how rund um Wärmprozesse, um Kleinbetriebe bis hin zur Großindustrie mit modernster Technologie zu verbessern - lassen Sie uns gerne darüber sprechen !
+                        </ul>
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-14" style="background:#005591;/* margin:0 auto; *//* background-color: white; */">
+            <div class="column col-xs-12 col-md-6 col-0"
+                style="vertical-align:top;background:transparent;text-align:left;font-size:12px;padding: 0;font-family:Arial, Helvetica, sans-serif;color:#005591;">
+                <div class="elq-image-cell  cell cell-0"
+                    style="background-color:transparent;line-height:0;padding:0px 0px 0px 0px;text-align:center;">
+                    <img src="https://img03.en25.com/EloquaImages/clients/OYAGAAb/%7B644753c7-1d8a-47d0-9eb4-be320868915d%7D_lindoflamm-track-736x220.jpg"
+                        style="width:100%;height:auto;max-width:736px"></div>
+            </div>
+            <div class="column col-xs-12 col-md-6 col-1"
+                style="vertical-align:top;background:transparent;text-align:left;font-size:12px;font-family:Arial, Helvetica, sans-serif;color:#005591;">
+                <div style="background-color:transparent;line-height:18px;padding:20px 30px 0px 30px;"
+                    class="elq-text-cell cell cell-0">
+                    <div style="display:inline-block;width:100%;">
+                        <div data-lineheight="1.5" style="line-height: 39px;"><strong
+                                style="font-size: 26px; color: rgb(255, 255, 255);">Kontakta vårt LINDOFLAMM
+                                team!</strong></div>
+                    </div>
+                </div>
+                <div style="background-color:transparent;line-height:18px;padding:0px 30px 0px 30px;"
+                    class="elq-text-cell cell cell-1">
+                    <div style="display:inline-block;width:100%;">
+                        <div data-lineheight="1.5" style="line-height: 27px;"><span
+                                style="font-size: 18px; color: rgb(255, 255, 255);">Oavsett om du vill ställa fler
+                                frågor om LINDOFLAMM eller om du vill ha en demonstration, hjälper Lindes LINDOFLAMM
+                                team gärna till!</span></div>
+                    </div>
+                </div>
+                <div style="background-color:transparent;line-height:18px;padding:10px 30px 20px 30px;"
+                    class="elq-button-cell cell cell-2">
+                    <div style="text-align:left;font-family:Arial, Helvetica, sans-serif;"><a
+                            href="https://ig.linde-gas.com/kontakta-oss?elqTrackId=18d478a4a165406798eeb011a4149259"
+                            target="_blank" title="Kontakta oss" data-targettype="landingpage"
+                            data-targetname="7_SE_se_Lindoflamm_Contact Us (ig.linde-gas.com)" class="hovered"
+                            style="text-decoration:none;vertical-align:middle;word-wrap:break-word;overflow-wrap:break-word;color:#fff;text-align:center;background-color:#00A0E1;padding:10px 30px 10px 30px;border-radius:0;display:inline-block;max-width:100%;width:auto;"><span
+                                style="background-color:#00A0E1;cursor:pointer;text-decoration:none;user-select:none;color: #fff;"><span><span
+                                        style="font-size: 18px;color: #fff;">Kontakta oss</span></span></span></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div id="footer" class="row" style="background:#F1F5F7; padding: 20px 0;">
+            <div class="column col-xs-12 col-sm-9"
+                style="vertical-align:top;background:transparent;text-align:left;font-size:12px;font-family:Arial, Helvetica, sans-serif;color:#005591;">
+                <div style="background-color:transparent;line-height:18px; padding: 10px 15px;">
+                    <a target="_blank" title=""
+                        href="https://www.linde-gas.se/sv/footer_ren/data_protection?elqTrackId=16e23cc651974684ab743af6b957146d"
+                        data-targettype="webpage"
+                        style="font-size: 14px;text-decoration: none; color: #00A0E1;">Datenschutz</a> &nbsp; &nbsp; <a
+                        target="_blank" title=""
+                        href="https://www.linde-gas.se/sv/footer_ren/legal_notice?elqTrackId=3a1f2b47e30d442c9a29b5f55cec1c15"
+                        data-targettype="webpage"
+                        style="font-size: 14px; text-decoration: none; color: #00A0E1;">AGB</a> &nbsp;
+                    &nbsp; <a target="_blank" title=""
+                        href="https://www.linde.com/en/cookie-policy?elqTrackId=ccfd9077434240028e8b18d91f049dec"
+                        data-targettype="webpage"
+                        style="font-size: 14px; text-decoration: none; color: #00A0E1;">Rechtliche Hinweise</a>
+                </div>
+            </div>
+            <div class="column col-xs-12 col-sm-3"
+                style="vertical-align:top;background:transparent;text-align:left;font-size:12px;font-family:Arial, Helvetica, sans-serif;color:#005591;">
+                <div style="background-color:transparent;line-height:18px; padding: 10px 15px;"
+                    class="elq-text-cell cell cell-1">
+                    <div style="display:inline-block;width:100%;">
+                        <div style="line-height: 21px;" data-lineheight="1.5">
+                            <span style="font-size: 14px;">© Linde 2020</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const widthInput = document.getElementById('width');
+        widthInput.addEventListener('input', listenForInput);
+        widthInput.addEventListener('propertychange', listenForInput);
+
+        const thicknessInput = document.getElementById('thickness');
+        thicknessInput.addEventListener('input', listenForInput);
+        thicknessInput.addEventListener('propertychange', listenForInput); 
+
+        const lengthInput = document.getElementById('length');
+        lengthInput.addEventListener('input', listenForInput);
+        lengthInput.addEventListener('propertychange', listenForInput); 
+
+        const startingtempInput = document.getElementById('startingTemp');
+        startingtempInput.addEventListener('input', listenForInput);
+        startingtempInput.addEventListener('propertychange', listenForInput);
+        const targetTempInput = document.getElementById('targetTemp', listenForInput);
+        targetTempInput.addEventListener('input', listenForInput);
+        targetTempInput.addEventListener('propertychange', listenForInput);
+        finalPropaneHeatingTime = 0;
+        finalAcetyleneHeatingTime = 0;
+        let workPieceCalc = false;
+        let tempCalc = false;
+        const errorMessage = document.getElementById('wrongInput');
+        const thicknessFiledError = document.getElementById('errorForThickness');
+        const lengthFiledError = document.getElementById('errorForLength');
+
+
+
+        function listenForInput(e) {
+            console.log(e.target.value);
+
+            const isThicknessValid = validateThickness();
+            const isLengthValid = validateLength();
+
+            if (isLengthValid) {
+                lengthFiledError.style.display = 'none';
+                workPieceCalc = true;
+            } else {
+                lengthFiledError.style.display = 'block';
+                workPieceCalc = false;
+                return;
+            }
+
+            if (isThicknessValid) {
+                thicknessFiledError.style.display = 'none';
+                workPieceCalc = true;
+            } else {
+                thicknessFiledError.style.display = 'block';
+                workPieceCalc = false;
+                return;
+            }
+            const valid = validateInput();
+
+
+
+            if (valid) {
+                const result = calculate();
+                calculateTemp(result);
+
+            } else {
+                console.log("Input not valid");
+                workPieceCalc = false;
+                tempCalc = false;
+
+                errorMessage.style.display = 'block';
+
+            }
+
+        }
+
+        function validateThickness() {
+            console.log("thickness " + thicknessInput.value);   
+            console.log(thicknessInput.value === '');
+            if (thicknessInput.value === '') {
+                return false;
+            }
+            return true;
+        }
+
+        function validateLength() {
+            console.log("thickness " + lengthInput.value);   
+            console.log(lengthInput.value === '');
+            if (lengthInput.value === '') {
+                return false;
+            }
+            return true;
+        }
+
+
+
+        function validateInput() {
+
+            if (parseInt(widthInput.value) < 75) {
+                console.log("Less than minimum");
+                return false;
+            }
+
+            return true;
+        }
+
+        function calculate() {
+
+            let energyNeed = 0;
+            let width = document.getElementById('width').value;
+            let thickness = document.getElementById('thickness').value;
+            let length = lengthInput.value;
+            let result = 0;
+            if (width < 75) {
+                console.log("Width is less than a minimum. Min value 75mm");
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            errorMessage.style.display = 'none';
+
+
+
+
+            result = (length / 1000 * width * 2 / 1000 * thickness / 1000) * 7850;
+
+            console.log("Workpiece weight:  " + Math.round(result) * 100 / 100);
+            document.getElementById('weight').value = Math.round(result) * 100 / 100;
+
+            const weightElement = document.getElementById('weightResult');
+            weightElement.innerHTML = "<span style='font-weight: 600'>Vikten av det förvärmda godset: </span>" + Math.round(result) * 100 / 100 + " kg";
+
+            const resultForWeight = document.getElementById('workpieceResult');
+            resultForWeight.removeAttribute('hidden');
+
+            workPieceCalc = result !== 0;
+
+            return result;
+        }
+
+        function calculateTemp(result) {
+
+            let startingTemp = document.getElementById('startingTemp').value;
+            let targetTemp = document.getElementById('targetTemp').value;
+            let calculateTemp = targetTemp - startingTemp;
+
+            console.log("Delta T in C: " + calculateTemp);
+            document.getElementById('targetTemphidden').value = targetTemp;
+            document.getElementById('startingTemphidden').value = startingTemp;
+            document.getElementById('deltaThidden').value = calculateTemp;
+
+            const numOfNozzles = getNumberOfNozzles(result);
+            let avgAcetyleneHeatTime = acetyleneHeatingTime(numOfNozzles, result, calculateTemp);
+            let avgPropaneHeatTime = propaneHeatingTime(numOfNozzles, result, calculateTemp);
+
+            const deltaTemperature = document.getElementById('deltaT');
+            deltaTemperature.innerHTML = "<span style='font-weight: 600'>Delta T (°C): </span>" + calculateTemp + " °C";
+
+            const resultForTemp = document.getElementById('deltaTemp');
+            resultForTemp.removeAttribute('hidden');
+
+            tempCalc = calculateTemp !== 0;
+        }
+        function getNumberOfNozzles(result) {
+            let numberOfNozzles = 0;
+            if (result >= 1 && result <= 1000) {
+                numberOfNozzles = 16;
+            } else if (result >= 1001 && result <= 2000) {
+                numberOfNozzles = 33;
+            }
+            else if (result >= 2001 && result <= 3000) {
+                numberOfNozzles = 49;
+            } else if (result >= 3001 && result <= 4000) {
+                numberOfNozzles = 66;
+            } else if (result >= 4001 && result <= 5000) {
+                numberOfNozzles = 82;
+            } else if (result >= 5001 && result <= 6000) {
+                numberOfNozzles = 99;
+            } else if (result >= 6001 && result <= 7000) {
+                numberOfNozzles = 115;
+            } else if (result >= 7001 && result <= 8000) {
+                numberOfNozzles = 132;
+            } else if (result >= 8001 && result <= 9000) {
+                numberOfNozzles = 148;
+            }
+            else if (result >= 9001 && result <= 10000) {
+                numberOfNozzles = 165;
+            } else {
+                console.log("Incorrect number");
+            }
+
+            console.log("number of nozzles: " + numberOfNozzles);
+            document.getElementById('numberOfNozzles').value = numberOfNozzles;
+
+            return numberOfNozzles;
+
+        }
+
+        function acetyleneHeatingTime(numberOfNozzles, result, calculateTemp) {
+            let gasConsumption = 0.15;
+            let efficiency = 0.9;
+            let caloricValue = 5.25;
+            let specificHeatCapacity = 490;
+            let powerPrimaryFlame = gasConsumption * efficiency * caloricValue;
+            let totalPower = numberOfNozzles * powerPrimaryFlame;
+            energyNeed = (specificHeatCapacity * result * calculateTemp) / 1000;
+            let heatingTime = Math.round((energyNeed / totalPower / 60) * 100) / 100;
+            console.log("Theoretical heating time in minutes(Acetylene): " + heatingTime);
+            document.getElementById('heatingTime').value = heatingTime;
+            const acetyleneMinutesForHeating = document.getElementById('acetyleneMinutes');
+            acetyleneMinutesForHeating.innerHTML = "<span style='color: #00A0E1; display: inline-block; font-family: 'Linde Dax', Arial, sans-serif; font-weight: 600; margin-left: 2%;'></span>" + heatingTime + "min";
+            finalAcetyleneHeatingTime = heatingTime;
+            return heatingTime;
+        }
+
+        function propaneHeatingTime(numberOfNozzles, result, calculateTemp) {
+            let caloricValue = 2.90;
+            let gasConsumption = 0.15;
+            let efficiency = 0.70;
+            energyNeed = (490 * result * calculateTemp) / 1000;
+            let powerPrimaryFlame = gasConsumption * caloricValue * efficiency;
+            let totalPower = numberOfNozzles * powerPrimaryFlame;
+            let propaneHeatTime = energyNeed / totalPower / 60;
+            let roundedHeatTime = Math.round(propaneHeatTime * 100) / 100;
+            console.log("Theoretical heating time in minutes (propane): " + roundedHeatTime);
+            document.getElementById('roundedHeatTime').value = roundedHeatTime;
+            const propaneMinutesForHeating = document.getElementById('propaneMinutes');
+            propaneMinutesForHeating.innerHTML = "<span style='color: #00A0E1; display: inline-block; font-family: 'Linde Dax', Arial, sans-serif; font-weight: 600; margin-left: 2%;'></span>" + roundedHeatTime + "min";
+            finalPropaneHeatingTime = roundedHeatTime;
+            return roundedHeatTime;
+
+        }
+
+        function makeCalculationVisibile() {
+            var e = document.getElementById("calculation");
+            document.getElementById("calculation").style.display = 'block';
+        }
+
+        function openFirstBox() {
+            const buttonIcon = document.getElementById('buttonForFirstTab');
+            const Logistics = document.getElementById('firstBoxInfo');
+            const logisticsLine = document.getElementById('lineForFirstBox');
+            const listForFirst = document.getElementById('firstBoxList');
+
+            if (!Logistics.hidden) {
+                buttonIcon.src = "https://img03.en25.com/EloquaImages/clients/OYAGAAb/%7Bc92d11f3-7ddf-4cd0-9502-bf5442df70f3%7D_down_arrow.png";
+                Logistics.hidden = true;
+                logisticsLine.hidden = true;
+                listForFirst.style.display = 'none';
+            } else {
+                Logistics.removeAttribute('hidden');
+                logisticsLine.removeAttribute('hidden');
+                buttonIcon.src = "https://img03.en25.com/EloquaImages/clients/OYAGAAb/%7Bc29e9557-b6d3-4b57-bd43-62667575b1cc%7D_up_arrow.png";
+                listForFirst.style.display = 'block';
+            }
+        }
+
+        function openSecondBox() {
+            const buttonIconTwo = document.getElementById('buttonForSecondTab');
+            const productivity = document.getElementById('secondBoxInfo');
+            const productivityLine = document.getElementById('lineForSecondBox');
+            const listForSecond = document.getElementById('secondBoxList');
+
+            if (!productivity.hidden) {
+                buttonIconTwo.src = "https://img03.en25.com/EloquaImages/clients/OYAGAAb/%7Bc92d11f3-7ddf-4cd0-9502-bf5442df70f3%7D_down_arrow.png";
+
+                productivity.hidden = true;
+                productivityLine.hidden = true;
+                listForSecond.style.display = 'none';
+            } else {
+                productivity.removeAttribute('hidden');
+                productivityLine.removeAttribute('hidden');
+                buttonIconTwo.src = "https://img03.en25.com/EloquaImages/clients/OYAGAAb/%7Bc29e9557-b6d3-4b57-bd43-62667575b1cc%7D_up_arrow.png";
+                listForSecond.style.display = 'block';
+
+            }
+        }
+
+        function openThirdBox() {
+            const buttonIconThree = document.getElementById('buttonForThirdTab');
+            const environment = document.getElementById('ThirdBoxInfo');
+            const environmentLine = document.getElementById('lineForThirdBox');
+
+            if (!environment.hidden) {
+                buttonIconThree.src = "https://img03.en25.com/EloquaImages/clients/OYAGAAb/%7Bc92d11f3-7ddf-4cd0-9502-bf5442df70f3%7D_down_arrow.png";
+                environment.hidden = true;
+                environmentLine.hidden = true;
+            } else {
+                environment.removeAttribute('hidden');
+                environmentLine.removeAttribute('hidden');
+                buttonIconThree.src = "https://img03.en25.com/EloquaImages/clients/OYAGAAb/%7Bc29e9557-b6d3-4b57-bd43-62667575b1cc%7D_up_arrow.png";
+            }
+        }
+
+        function openFourthBox() {
+            const buttonIconFour = document.getElementById('buttonForFourthTab');
+            const invest = document.getElementById('FourthBoxInfo');
+            const investLine = document.getElementById('lineForFourthBox');
+            const listForFourth = document.getElementById('fourthBoxList');
+
+
+            if (!invest.hidden) {
+                buttonIconFour.src = "https://img03.en25.com/EloquaImages/clients/OYAGAAb/%7Bc92d11f3-7ddf-4cd0-9502-bf5442df70f3%7D_down_arrow.png";
+                invest.hidden = true;
+                investLine.hidden = true;
+                listForFourth.style.display = 'none';
+
+            } else {
+                invest.removeAttribute('hidden');
+                investLine.removeAttribute('hidden');
+                buttonIconFour.src = "https://img03.en25.com/EloquaImages/clients/OYAGAAb/%7Bc29e9557-b6d3-4b57-bd43-62667575b1cc%7D_up_arrow.png";
+                listForFourth.style.display = 'block';
+            }
+        }
+
+        function makeSecondPageVisible() {
+            if (!workPieceCalc || !tempCalc) {
+                const fieldsInput = document.getElementById('fieldsComplete');
+                fieldsInput.removeAttribute('hidden');
+
+                return;
+            }
+     
+
+            console.log("wronginput" + parseFloat(widthInput.innerText));
+
+
+            const secondPage = document.getElementById('secondPageDiv');
+            secondPage.removeAttribute('hidden');
+            const firstPage = document.getElementById('firstPageBlock');
+            firstPage.style.display = 'none';
+            timeSaving();
+            scrollToTop(300);
+
+
+            var form_data = $('#valueTool').serialize(); 
+            $.ajax({
+                url: 'https://s1512530243.t.eloqua.com/e/f2?elqSiteID=1512530243&elqFormName=se_lindoflamm_valuetool',
+                type: 'post',
+                data: form_data
+            }).done(function (response) { //
+                console.log('elqFormData sent');
+            });
+        }
+
+        function inputFieldErrors() {
+            if (thicknessInput.innerText === '') {
+                thicknessFiledError.style.display = 'block';
+                return;
+            }
+
+            thicknessFiledError.style.display = 'none';
+        }
+        function inputFiledErrorsTwo() {
+
+            if (lengthInput.innerText === '') {
+                lengthFiledError.style.display = 'block';
+                return;
+            }
+
+            lengthFiledError.style.display = 'none';
+        }
+
+
+        function startNewCalculation(secondPage, firstPage) {
+
+            const newcalc = document.getElementById('firstPageBlock');
+            const secondPageHide = document.getElementById('secondPageDiv');
+            newcalc.style.display = 'block';
+            secondPageHide.setAttribute('hidden', true);
+
+        }
+
+        function scrollToTop(duration) {
+            if (document.scrollingElement.scrollTop === 0) return;
+
+            const totalScrollDistance = document.scrollingElement.scrollTop;
+            let scrollY = totalScrollDistance, oldTimestamp = null;
+
+            function step(newTimestamp) {
+                if (oldTimestamp !== null) {
+                    scrollY -= totalScrollDistance * (newTimestamp - oldTimestamp) / duration;
+                    if (scrollY <= 0) return document.scrollingElement.scrollTop = 0;
+                    document.scrollingElement.scrollTop = scrollY;
+                }
+                oldTimestamp = newTimestamp;
+                window.requestAnimationFrame(step);
+            }
+            window.requestAnimationFrame(step);
+        }
+
+    </script>
+</body>
+
+</html>
