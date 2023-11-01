@@ -1,0 +1,285 @@
+     @font-face {
+            font-family: 'Linde Dax';
+            font-weight: 300;
+            src: url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/EOT/Fonts/LindeDaxLigWeb.eot');
+            src: url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/EOT/Fonts/LindeDaxLigWeb.eot?#iefix') format('embedded-opentype'),
+                url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/WOFF/Fonts/LindeDaxLigWeb.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Linde Dax';
+            font-weight: 400;
+            src: url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/EOT/Fonts/LindeDaxSemiLigWeb.eot');
+            src: url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/EOT/Fonts/LindeDaxSemiLigWeb.eot?#iefix') format('embedded-opentype'),
+                url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/WOFF/Fonts/LindeDaxSemiLigWeb.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Linde Dax';
+            font-weight: 500;
+            src: url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/EOT/Fonts/LindeDaxRegWeb.eot');
+            src: url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/EOT/Fonts/LindeDaxRegWeb.eot?#iefix') format('embedded-opentype'),
+                url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/WOFF/Fonts/LindeDaxRegWeb.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Linde Dax';
+            font-weight: 600;
+            src: url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/EOT/Fonts/LindeDaxMedWeb.eot');
+            src: url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/EOT/Fonts/LindeDaxMedWeb.eot?#iefix') format('embedded-opentype'),
+                url('https://fonts.vahakas.fi/aga/lindedax_official/fonts/WOFF/Fonts/LindeDaxMedWeb.woff') format('woff');
+        }
+
+        html * {
+            font-family: 'Linde Dax', Arial, sans-serif;
+            font-size: 18px;
+            color: rgb(0, 85, 145);
+        }
+
+        .header {
+            border-bottom: 8px solid #00305c;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background-color: rgb(241, 245, 247);
+        }
+
+        h3 {
+            margin-bottom: 20px;
+        }
+
+        .elq-content-image {
+            max-width: 420px;
+        }
+
+        #firstBanner {
+            display: block;
+            margin: 0 auto;
+            background-repeat: no-repeat;
+            width: 100%;
+        }
+
+        .backgroundForGenieText {
+            display: inline-block;
+            margin: 0 auto;
+            background-color: #f1f5f7;
+            background-repeat: no-repeat;
+            padding-bottom: 3%;
+            border-bottom: 1px solid;
+        }
+
+        .userInputForm {
+            display: block;
+            margin: 0 auto;
+            background-repeat: no-repeat;
+
+            font-family: 'Linde Dax', Arial, sans-serif;
+            float: left;
+        }
+
+        #dimentionsPic {
+            max-width: 100%;
+        }
+
+        #width,
+        #length,
+        #thickness,
+        #startingTemp,
+        #targetTemp {
+            border-radius: 10px;
+            padding: 6px;
+            background-color: #f1f5f7;
+            border: 1px solid;
+        }
+
+        #submitButton {
+            border: 1px solid;
+            padding: 12px 10px 10px 10px;
+            background-color: #00a0e1;
+            color: white;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        #submitButton:hover {
+            background-color: #0A86B8;
+            cursor: pointer;
+        }
+
+        #calculation {
+            display: none;
+            float: left;
+            width: 70%;
+            padding-left: 20%;
+        }
+
+        #generalText {
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .temperatureBox,
+        .heatingTimeBox,
+        .weightBox {
+            border: 1px solid #00305c;
+            background-color: #F1F5F7;
+            border-radius: 10px;
+            padding-left: 20%;
+            padding: 10px;
+
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .heatingTimePropaneBox {
+            border: 1px solid #00305c;
+            background-color: #F1F5F7;
+            border-radius: 10px;
+            padding-left: 20%;
+            padding: 10px;
+
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        #workpieceResult {
+            padding-top: 30px;
+            position: relative;
+        }
+
+        #weightResult {
+            display: inline-block;
+            padding-left: 10px;
+            font-family: 'Linde Dax', Arial, sans-serif;
+            font: bold;
+            color: #00a0e1;
+            margin-bottom: 40px;
+        }
+
+        button {
+            outline: none;
+        }
+
+        #workpieceResult img {
+            display: inline-block;
+        }
+
+        #deltaTemp {
+            position: relative;
+            background-repeat: no-repeat;
+        }
+
+        .resultsBoxPagetwo {
+            border: 1ps solid #f1f5f7;
+            background-color: #f1f5f7;
+            background-repeat: no-repeat;
+            margin: 0 auto;
+            display: block;
+            height: 270px;
+            margin-bottom: 5%;
+            padding-bottom: 3%;
+            margin-bottom: 0;
+        }
+
+        #acetyleneBox {
+            width: 250px;
+            height: 190px;
+            left: 132px;
+            top: 473px;
+            background: #F1F5F7;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            margin-left: 2%;
+            display: inline-block;
+            float: left;
+        }
+
+        #propaneBox {
+            width: 250px;
+            height: 190px;
+            left: 132px;
+            top: 473px;
+            background: #F1F5F7;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            display: inline-block;
+            margin-left: 5%;
+            float: left;
+        }
+
+
+        #newCalculation {
+            background-color: #00A0E1;
+            color: white;
+            font-family: 'Linde Dax', Arial, sans-serif;
+            margin-left: 2%;
+            padding: 10px;
+            cursor: pointer;
+            border: 1px solid #00A0E1;
+            display: block;
+        }
+
+        #newCalculation:hover {
+            background-color: #0A86B8;
+        }
+
+        .InfoBenefits {
+            border: 1px solid #00305c;
+            margin: 0 auto;
+            background: #00305c;
+            background-repeat: no-repeat;
+            height: auto;
+            font-family: 'Linde Dax', Arial, sans-serif;
+            color: white;
+            margin-top: 0px;
+        }
+
+        #dropdownInfo {
+            margin: 0 auto;
+            width: 60%;
+            background-repeat: no-repeat;
+        }
+
+        @media only screen and (max-width: 1000px) {
+            #dimentionsPic {
+                width: 80%;
+            }
+
+            .elq-content-image {
+                max-width: 300px;
+            }
+        }
+
+        @media only screen and (max-width: 767px) {
+
+            #timeSavedBox,
+            #propaneBox {
+                margin-top: 5%;
+            }
+
+            .elq-content-image {
+                max-width: 80%;
+            }
+
+            #propaneBox,
+            #timeSavedBox,
+            #acetyleneBox {
+                margin-left: 5%;
+                float: none;
+            }
+
+            .hidemobile {
+                display: none;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .header {
+                padding-left: 40px;
+                padding-right: 45px;
+            }
+        }
+
+        @media (min-width: 1380px) {
+            .container {
+                width: 1350px;
+            }
+        }
